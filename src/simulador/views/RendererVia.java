@@ -21,7 +21,7 @@ public class RendererVia extends AbstractCeldaRenderer {
         for (int i = 0; i < 10; i++) {
             int px = x + random.nextInt(size);
             int py = y + random.nextInt(size);
-            g.fillOval(px, py, 2, 2);
+            g.fillOval(px, py, 6, 6);
         }
     }
 }

@@ -142,6 +142,7 @@ public class CeldaUrbana  {
 	
 	public void setElemento(IElementoUrbano elemento) {
 		this.elemento = elemento;
+		this.setEstadoAmbiental(elemento.getEfectoAmbiental());
 	}
 	
 	public ArrayList<ISensor> getSensores() {

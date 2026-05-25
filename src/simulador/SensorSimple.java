@@ -8,7 +8,6 @@ public class SensorSimple implements ISensor {
 
 	private final int identificador;
 	
-	
 	private String parametro;
 	private String unidades;
 

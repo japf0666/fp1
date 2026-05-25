@@ -44,17 +44,18 @@ public class CuadriculaUrbanaSimple implements ICuadriculaUrbanaSimple {
 	@Override
 	public CeldaUrbana getCeldaUrbana(int col, int fila) {
 		
-		/*
 		if (!validarCoordenadas(col, fila)) {
 			System.out.println("Error ---> getCeldaUrbana en (" + col + ", " + fila +
 					            "), columna o fila fuera de rango");
 			return null;
 		}	
+		/*
 		CeldaUrbana c = new CeldaUrbana(cuadricula[fila][col]);
 		//System.out.println(c);
 		return c;
 		*/
 		return cuadricula[fila][col];
+		
 	}
 
 
@@ -129,21 +130,8 @@ public class CuadriculaUrbanaSimple implements ICuadriculaUrbanaSimple {
 		return 0;
 	}
 
-	/*
-	@Override
-	public int addParametroAmbiental(int col, int fila, String nombre, double valor) {
-		if (!validarCoordenadas(col, fila)) {
-			System.out.println("Error ---> addParametroAmbiental en (" + col + ", " + fila +
-					            "), columna o fila fuera de rango");
-			return 1;
-		}
-		cuadricula[fila][col].setParametroAmbiental(nombre, valor);
-		return 0;
-	}
-	*/
-	
-
 	// Devuelve 0 si no se producen errores de ejecución.
+	// Si la celda contiene un elemento lo sobreescribe.
 	@Override
 	public int agregarElementoUrbano(int col, int fila, IElementoUrbano elemento) {
 		if (!validarCoordenadas(col, fila)) {
@@ -154,11 +142,6 @@ public class CuadriculaUrbanaSimple implements ICuadriculaUrbanaSimple {
 		if (elemento == null) {
 			System.out.println("Error ---> agregarElementoUrbano: elemento = null");	
 			return 2;
-		}
-		if (cuadricula[fila][col].getElemento() != null) {
-			System.out.println("Error ---> agregarElementoUrbano: la celda ya tiene un elemento urbano");
-			System.out.println(cuadricula[fila][col].getElemento());
-			return 3;
 		}
 		elemento.setCoordenadaX(col);
 		elemento.setCoordenadaY(fila);

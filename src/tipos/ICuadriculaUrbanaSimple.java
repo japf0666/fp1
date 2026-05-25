@@ -55,6 +55,7 @@ public interface ICuadriculaUrbanaSimple {
 	public int setParametroAmbiental(int col, int fila, String nombre, double valor);
 	//public int addParametroAmbiental(int col, int fila, String nombre, double valor);
 	
+	
 	/**
 	 * Añade un elemento urbano a la celda urbana especificada por sus coordenadas (col, fila).
 	 * Modifica las coordenadas del elemento urbano para que coincidan con las coordenadas 
