@@ -37,4 +37,9 @@ public abstract class ElementoUrbanoAbstracto implements IElementoUrbano {
 	public void setCoordenadaY(int fila) {
 		this.fila = fila;
 	}
+	
+	@Override
+	public String toString() {
+		return  getClass().getSimpleName() + " at [x, y] = ["+ col + ", " + fila + "], efecto ambiental ---> " + getEfectoAmbiental();
+	}
 }

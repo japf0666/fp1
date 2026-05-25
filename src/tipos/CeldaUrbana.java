@@ -161,9 +161,9 @@ public class CeldaUrbana  {
 	}
 	
 	public void addSensor(ISensor sensor) {
-		System.out.println("add sensor 1");
+		//System.out.println("add sensor 1");
 		if (sensor != null && !contieneSensor(sensor)) {
-			System.out.println("add sensor 2");
+			//System.out.println("add sensor 2");
 			this.sensores.add(sensor);
 		}
 	}
@@ -225,7 +225,7 @@ public class CeldaUrbana  {
 	@Override
 	public String toString() {
 		
-		String s1 = "Celda at (col, fila): " + col + ", " + fila;
+		String s1 = "Celda at (col, fila): " + col + ", " + fila + "\n";
 		
 		String s2 = "Sensores ---> \n";
 		for (ISensor s : sensores) {
@@ -238,7 +238,7 @@ public class CeldaUrbana  {
 			s3 += s.toString();
 			s3 += "\n";
 		}
-		return s1 + s2 + s3;
+		return s1 + "\n" + s2 + "\n" + s3 + "\n-----------------------------\n";
 	}
 	
 	public static void main(String[] args) {

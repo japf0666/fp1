@@ -28,7 +28,6 @@ public interface IUbicable {
 	 */
 	String getDescripcion();
 	
-
 	int getCoordenadaX();  // columna
 	int getCoordenadaY();  // fila	
 	

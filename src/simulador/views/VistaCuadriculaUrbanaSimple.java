@@ -17,7 +17,7 @@ import javax.swing.JTextArea;
 import tipos.CeldaUrbana;
 import tipos.ICuadriculaUrbanaSimple;
 import tipos.IActuador;
-import tipos.IElementoUrbano;
+//import tipos.IElementoUrbano;
 import tipos.ISensor;
 import simulador.ElementoIndustrial;
 import simulador.ElementoPeatonal;
@@ -25,7 +25,7 @@ import simulador.ElementoResidencial;
 import simulador.ElementoVia;
 import simulador.ElementoVerde;
 import simulador.ElementoSumidero;
-import simulador.views.EnvironmentalOverlayManager;
+//import simulador.views.EnvironmentalOverlayManager;
 
 
 /**
@@ -167,7 +167,7 @@ public class VistaCuadriculaUrbanaSimple extends JPanel {
                 renderers.get(celda.getElemento().getClass());
 
         if (renderer != null) {
-        	System.out.println("renderer != null");
+        	//System.out.println("renderer != null");
             renderer.render(g2, celda, px, py, cellSize, overlayManager);
         }
     }
@@ -181,13 +181,13 @@ public class VistaCuadriculaUrbanaSimple extends JPanel {
 
         for (ISensor s : celda.getSensores()) {
             if (s != null) {
-            	System.out.println("pintando sensor");
+            	//System.out.println("pintando sensor");
             	rendererSensor.render(g2, s, px, py, cellSize);
             }
         }    
         for (IActuador a : celda.getActuadores()) {
             if (a != null) { 
-            	System.out.println("pintando actuador");
+            	//System.out.println("pintando actuador");
             	rendererActuador.render(g2, a, px, py, cellSize);
             }
         } 

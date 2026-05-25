@@ -2,6 +2,9 @@ package simulador;
 
 import tipos.IActuador;
 
+/**
+ * 
+ */
 public class ActuadorSimple implements IActuador {
 	
 	public static int id = 1;

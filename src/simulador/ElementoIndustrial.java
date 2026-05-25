@@ -31,4 +31,5 @@ public class ElementoIndustrial extends ElementoUrbanoAbstracto {
 		return identificador;
 	}
 	
+	
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import tipos.CeldaUrbana;
 import tipos.EstadoAmbiental;
-import tipos.ExcepcionCelda;
 import tipos.IActuador;
 import tipos.ICuadriculaUrbanaSimple;
 import tipos.IElementoUrbano;

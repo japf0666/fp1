@@ -102,8 +102,7 @@ public class Ciudad0 extends JFrame {
 		}
 		CeldaUrbana celda = cuadricula.getCeldaUrbana(col, fila);
 		celda.setElemento(elemento);
-		appendMensaje("Agragando elemento '" + elemento.getDescripcion() + "' en celda (" + col + ", " + fila + ")");
-		//vistaCuadricula.repaint();
+		appendMensaje("Agregando elemento '" + elemento.getDescripcion() + "' en celda (" + col + ", " + fila + ")");
 		vistaCuadricula.repaint();
 	}
     
@@ -124,10 +123,10 @@ public class Ciudad0 extends JFrame {
 			throw new IllegalArgumentException("Columna o fila fuera de rango");
 		}
 		CeldaUrbana celda = cuadricula.getCeldaUrbana(col, fila);
-		System.out.println("agregar actuador" + celda);
+		// System.out.println("agregar actuador" + celda);
 		celda.addActuador(actuador);
 		appendMensaje("Agregando actuador '" + actuador.getDescripcion() + "' en celda (" + col + ", " + fila + ")");
-		System.out.println("agregar actuador" + celda);
+		// System.out.println("agregar actuador" + celda);
 		vistaCuadricula.repaint();
 	}
     

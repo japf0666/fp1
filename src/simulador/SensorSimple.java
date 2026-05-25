@@ -96,6 +96,4 @@ public class SensorSimple implements ISensor {
 	            parametro + ", unidades=" + unidades + 
 				", col=" + col + ", fila=" + fila + "]";
 	}
-		
-
 }
