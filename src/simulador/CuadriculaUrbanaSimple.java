@@ -167,7 +167,7 @@ public class CuadriculaUrbanaSimple implements ICuadriculaUrbanaSimple {
 		}
 		sensor.setCoordenadaX(col);
 		sensor.setCoordenadaY(fila);
-		cuadricula[fila][col].addSensor(sensor);;
+		cuadricula[fila][col].addSensor(sensor);
 		return 0;
 	}
 

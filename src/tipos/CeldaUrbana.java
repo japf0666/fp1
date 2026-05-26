@@ -162,10 +162,9 @@ public class CeldaUrbana  {
 	}
 	
 	public void addSensor(ISensor sensor) {
-		//System.out.println("add sensor 1");
 		if (sensor != null && !contieneSensor(sensor)) {
-			//System.out.println("add sensor 2");
 			this.sensores.add(sensor);
+			System.out.println("CeldaUrbana.addSensor ---> " + sensor);
 		}
 	}
 	
