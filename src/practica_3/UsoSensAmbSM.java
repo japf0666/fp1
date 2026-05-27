@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import simulador.Ciudad0;
 
-public class UsoSensorAmbientalSM {
+public class UsoSensAmbSM {
 	
 	
 	public static void main(String[] args) {
@@ -34,7 +34,7 @@ public class UsoSensorAmbientalSM {
 		int fila = sc.nextInt();
 		
 		// Creamos el sensor y le fijamos su ubicación
-		SensorAmbientalSM s1 = new SensorAmbientalSM(id, parametro, unidades);
+		SensAmbSM s1 = new SensAmbSM(id, parametro, unidades);
 		s1.setUbicacion(col, fila);
 
 		// Le decimos en qué ciudad está.

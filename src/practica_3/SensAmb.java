@@ -1,6 +1,6 @@
 package practica_3;
 
-public class SensorAmbiental {
+public class SensAmb {
 	
     private int identificador;
     private String tipo;

@@ -2,12 +2,12 @@ package practica_3;
 
 import java.util.Scanner;
 
-public class UsoSensorAmbiental {
+public class UsoSensAmb {
 
 	public static void main(String[] args) {
 
 		// Crear un sensor
-		SensorAmbiental s1 = new SensorAmbiental();
+		SensAmb s1 = new SensAmb();
 
 		// Registro de datos para el sensor 1
 		Scanner sc = new Scanner(System.in);
