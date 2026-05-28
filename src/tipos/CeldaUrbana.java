@@ -13,10 +13,9 @@ import java.util.HashMap;
  * .- opcionalmente, una lista de sensores ubicados en ella que pueden "medir" su estado ambiental.
  * .- opcionalmante, una lista de actuadores que pueden modificar su estado ambiental.
  * 
- * El estado ambiental de la celda se puede modificar por otro objeto invocando: 
+ * El estado ambiental de la celda puede ser modificado por otro objeto invocando: 
  * .- setEfectoAmbiental establece el estado ambiental de la celda a un nuevo valor.
- * .- sumarEfectoAmbiental incrementa el estado ambiental actual de la celda otro efecto ambiental, 
- *    sumando los valores de cada parámetro ambiental.
+ * .- sumarEfectoAmbiental incrementa el estado ambiental actual de la celda sumando otro efecto ambiental.
  */
 
 public class CeldaUrbana  {
@@ -72,11 +71,19 @@ public class CeldaUrbana  {
 		this.estadoAmbiental = new EstadoAmbiental(celda.getEstadoAmbiental());
 	}
 	
-	public void setLimite(String parametro, double valor) {
+	/**
+	 * Establece un límite superior para el valor del parámetro
+	 * @param parametro
+	 * @param valor
+	 */
+	public void setLimiteSuperior(String parametro, double valor) {
 		limites.put(parametro, valor);
 	}
 	
-	
+	/**
+	 * Devuelve el estado ambiental de la celda.
+	 * @return
+	 */
 	public EstadoAmbiental getEstadoAmbiental() {
 		return estadoAmbiental;
 	}
@@ -131,24 +138,47 @@ public class CeldaUrbana  {
 		return this;
 	}
 	
+	/**
+	 * Suma un efecto ambiental al estado ambiental actual de la celda.
+	 * @param efecto
+	 * @return
+	 */
 	public CeldaUrbana sumarEfectoAmbiental(EstadoAmbiental efecto) {
 		estadoAmbiental.sumar(efecto);
 		return this;
 	}
 
+	/**
+	 * Devuelve el elemento urbano presente en la celda.
+	 * @return elemento urbano presente en la celda.
+	 */
 	public IElementoUrbano getElemento() {
 		return elemento;
 	}
 	
+	/**
+	 * Fila el elemento urbano presente en la celda.
+	 * Sobreescribe al elemento presente en ese momento en la celda.
+	 * @param elemento
+	 */
 	public void setElemento(IElementoUrbano elemento) {
 		this.elemento = elemento;
 		this.setEstadoAmbiental(elemento.getEfectoAmbiental());
 	}
 	
+	/**
+	 * Obtiene la lista de sensores ubicados en la celda.
+	 * @return
+	 */
 	public ArrayList<ISensor> getSensores() {
         return sensores; //getByType(ISensorSimulado.class);
     }
 	
+	/**
+	 * Devuelve true si el sensor está instalado en la celda.
+	 * @param sensor
+	 * @return true si el sensor está instalado en la celda, false en caso contrario
+	 */
 	public boolean contieneSensor(ISensor sensor) {
 		if (sensor == null) {
 			return false;
@@ -161,23 +191,41 @@ public class CeldaUrbana  {
 		return false;
 	}
 	
+	/**
+	 * Añade (instala un sensor en la celda.
+	 * Las coordenadas del sensor deben coincidir con las de la celda.
+	 * @param sensor
+	 */
 	public void addSensor(ISensor sensor) {
 		if (sensor != null && !contieneSensor(sensor)) {
 			this.sensores.add(sensor);
-			System.out.println("CeldaUrbana.addSensor ---> " + sensor);
+			System.out.println("CeldaUrbana.addSensor at (" + col + ", " + fila + ") ---> " + sensor);
 		}
 	}
 	
+	/**
+	 * Elimina sensor de la celda.
+	 * @param sensor
+	 */
 	public void removeSensor(ISensor sensor) {
 		if (contieneSensor(sensor)) {
 			this.sensores.remove(sensor);
 		}
 	}
     
+	/**
+	 * Devuelve la lista de actuadores instalados en la celda.
+	 * @return
+	 */
     public ArrayList<IActuador> getActuadores() {
         return actuadores; //getByType(IActuador.class);
     }
 
+	/**
+	 * Devuelve true si el actuador está instalado en la celda.
+	 * @param actuador
+	 * @return true si el actuador está instalado en la celda, false en caso contrario
+	 */
 	public boolean contieneActuador(IActuador actuador) {
 		if (actuador == null) {
 			return false;
@@ -192,13 +240,21 @@ public class CeldaUrbana  {
 		return false;
 	}
 	
+	/**
+	 * Añade actuador a la celda.
+	 * Las coordenadas del sensor deben coincidir con las de la celda.
+	 * @param actuador
+	 */
 	public void addActuador(IActuador actuador) {
 		if (actuador != null && !contieneActuador(actuador)) {
-			System.out.println("celda, addactuador. " + actuador);
+			System.out.println("CeldaUrbana.addActuador at (" + col + ", " + fila + ") ---> " + actuador);
 			this.actuadores.add(actuador);
 		}
 	}
 	
+	/**
+	 * Elimina actuador de la celda.
+	 */
 	public void removeActuador(IActuador actuador) {
 		if (contieneActuador(actuador)) {
 			this.actuadores.remove(actuador);
@@ -257,7 +313,7 @@ public class CeldaUrbana  {
 		
 		// Establecemos un límite superior para el parámetro CO2.
 		System.out.println("Establecemos un límite superior de 1000 ppm para el parámetro CO2...");
-		celda.setLimite("CO2", 1000); 
+		celda.setLimiteSuperior("CO2", 1000); 
 		
 		// Establecemos el estado ambiental de la celda al estado ambiental e1
 		celda.setEstadoAmbiental(e1);

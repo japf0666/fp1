@@ -2,6 +2,8 @@ package practica_3;
 
 import tipos.ISensor;
 
+import java.util.Scanner;
+
 import simulador.Ciudad0;
 
 /**
@@ -119,7 +121,10 @@ public class SensAmbSM implements ISensor {
                            " " + "Ubicación: " + getUbicacion();
     }
 	
-	public static void main(String args []) {
+	private static void testConstructores() {
+		
+		System.out.println("Clase SensorAmbSM \n\n" +
+		                    "EJECUTANDO TEST DE CONSTRUCTORES.\n");
 		
 		// Probamos la construcción del objeto con parámetros válidos y "lógicos":
 		System.out.println("Creando sensor con parámetros 'coherentes': 1, C02, ppm");
@@ -162,7 +167,82 @@ public class SensAmbSM implements ISensor {
 				           "Estos problemas deben resolverse:\n" +
 				           "- Si es posible en la propia clase.\n " +
 				           "- Si no pueden resolverse en la clase deben tratarse en el código que usa la clase.\n\n" +
-				           "Iremos añadiendo formas de solucionar estos problemas a lo largo del curso ... " 
+				           "Iremos añadiendo formas de solucionar estos problemas a lo largo del curso ... \n" 
 				          );	
+	}
+	
+	public static void testSensorEnSimulador() {
+
+		
+		System.out.println("Clase SensorAmbSM \n\n" +
+				"PROBANDO INTEGRACIÓN CON SIMULADOR.\n");
+
+		// Creamos ciudad simulada.
+		Ciudad0 ciudad = Ciudad0.getCiudad();
+
+		// Pedimos datos del sensor
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("\n--------------------------------------------------------");
+		System.out.println("Introduzca los datos del sensor: ");
+
+		System.out.print("ID: ");
+		int id = sc.nextInt();
+
+		// limpiar buffer, para eliminar el enter pendiente
+		// nextInt() lee sólo el número
+		sc.nextLine(); 
+
+		System.out.print("Tipo de parámetro: ");
+		String parametro = sc.nextLine();
+
+		System.out.print("Unidades: ");
+		String unidades = sc.nextLine();
+
+		System.out.print("Ubicación - columna: ");
+		int col = sc.nextInt();
+
+		System.out.print("Ubicación - fila: ");
+		int fila = sc.nextInt();
+
+		// Creamos el sensor y le fijamos su ubicación
+		SensAmbSM s1 = new SensAmbSM(id, parametro, unidades);
+		s1.setUbicacion(col, fila);
+
+		// Le decimos en qué ciudad está.
+		s1.setCiudad(ciudad);
+
+		// Leemos el parámetro correspondiente a su posición.
+		System.out.println("Pulse enter para ver valor del sensor");
+		sc.nextLine();
+		System.out.println("valor leido = " + s1.getValor());
+
+		// Agregamos el sensor explíciamente a la ciudad para que pueda 
+		// gestionarlo.
+		System.out.println("Pulse enter para agregar el sensor al simulador");
+		sc.nextLine();
+		ciudad.agregarSensor(s1.getCoordenadaX(),
+				s1.getCoordenadaY(), s1);
+
+		// Leemos el parámetro correspondiente a su posición.
+		System.out.println("Pulse enter para ver valor del sensor");
+		sc.nextLine();
+		System.out.println("valor leido = " + s1.getValor());
+
+
+		// Mostrar pantalla de control
+		System.out.println("=== 🏙️ Pantalla de Control  ===");
+		s1.mostrarInfo();
+
+		// Mostrar descripciones rápidas
+		System.out.println("📋 Resumen:");
+		System.out.println(s1);
+
+		sc.close();	
+	}
+	
+	public static void main(String args []) {		
+		testConstructores();
+		testSensorEnSimulador();	
 	}
 }

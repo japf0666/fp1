@@ -1,19 +1,17 @@
 package tipos;
 
 /**
- * La interfaz ISensor representa un sensor ubicado en la ciudad que mide un 
- * parámetro específico (como calidad del aire, ruido o temperatura) y proporciona
- * información sobre su ubicación, valor actual y unidades de medida.
+ * La interfaz ISensor representa un sensor ubicado en una celda de la 
+ * cudrícula urbana que mide un parámetro específico (como calidad del aire, ruido 
+ * o temperatura) y proporciona información sobre su ubicación, valor actual y 
+ * unidades de medida.
  * 
- * Esta interfaz extiende IUbicable, lo que significa que cada sensor tiene una 
- * ubicación específica en la cuadrícula urbana y puede ser identificado de forma
- * unívoca. 
- * 
- * Además, ISensor incluye métodos para obtener el tipo de parámetro que
- * mide el sensor, su valor actual y las unidades de medida correspondientes.
+ * Esta interfaz extiende IUbicable, lo que significa que:
+ * (1) cada sensor tiene una ubicación específica en la cuadrícula urbana y 
+ * (2) puede ser identificado de forma unívoca. 
  * 
  * En principio se asume que:
- * - cada sensor sólo mide un parámetro en unas unidades específicas.
+ * - cada sensor mide un único parámetro en unas unidades específicas.
  * - el identificador del sensor, el parárámetro que mide y la unidad de medida son inmutables.
  * - el sensor obtiene su valor a través de la celda urbana en la que se encuentra ubicada,
  *   por ello no hay un método para establecer el valor del sensor.

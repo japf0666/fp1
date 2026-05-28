@@ -1,6 +1,15 @@
 package practica_3;
+
+import tipos.ISensor;
+
 import java.util.Scanner;
+
+import simulador.Ciudad0;
+
 public class SmartCityAppV3 {
+	
+    static Scanner entrada = new Scanner(System.in);
+	static Ciudad0 city = Ciudad0.getCiudad();
 
 	public static void main(String[] args) {
 		
@@ -17,7 +26,6 @@ public class SmartCityAppV3 {
         System.out.println("     __||____||__   ");
         System.out.println();
        
-        Scanner entrada = new Scanner(System.in);
 
         System.out.println("Introduce tu nombre:");
         String nombre = entrada.nextLine();
@@ -40,116 +48,60 @@ public class SmartCityAppV3 {
         System.out.println("=======================================");
         System.out.println("Por favor, selecciona una opción (sin efecto todavía):");
         
-        int opcion = entrada.nextInt();
-        System.out.println("Has elegido la opción " + opcion);
-        System.out.println();
+        System.out.println("\n----------------------------------------------------------\n");
+        System.out.println("Vamos a registrar dos sensores y a cambiarlos de posición");
+        
         
         // ======== Lectura de datos del primer sensor ========
-        System.out.println("\n🔧 Registro del sensor 1");
+        System.out.println("\n🔧 Registro del sensor 1");       
+        ISensor s1 = registrarSensor();
+        s1.mostrarInfo();
         
-        System.out.print("ID: ");
-        int identificador = entrada.nextInt();
-        entrada.nextLine(); // limpiar buffer, para eliminar el enter pendiente
-                       // nextInt() lee sólo el número
-        
-        System.out.print("Tipo: ");
-        String tipo = entrada.nextLine();
-        
-        System.out.print(" Ubicación (CoordenadaX): ");
-        int coordenadaX = entrada.nextInt();
-        entrada.nextLine(); // limpiar buffer, para eliminar el enter pendiente
-                       // nextDouble() lee sólo el número
-        
-        System.out.print("Ubicación (CoordenadaY): ");
-        int coordenadaY = entrada.nextInt();
-        entrada.nextLine();
-        
-     // ======== Lectura de datos del segundo sensor ========
+        // ======== Lectura de datos del segundo sensor ========
         System.out.println("\n🔧 Registro del sensor 2");
-        
-        System.out.print("ID: ");
-        int identificador2 = entrada.nextInt();
-        entrada.nextLine(); // limpiar buffer, para eliminar el enter pendiente
-                       // nextInt() lee sólo el número
-        
-        System.out.print("Tipo: ");
-        String tipo2 = entrada.nextLine();
-        
-        System.out.print("Ubicación (CoordenadaX): ");
-        int coordenadaX2 = entrada.nextInt();
-        entrada.nextLine(); // limpiar buffer, para eliminar el enter pendiente
-                       // nextDouble() lee sólo el número
-        
-        System.out.print("Ubicación (CoordenadaY): ");
-        int coordenadaY2 = entrada.nextInt();
+        ISensor s2 = registrarSensor();
+        s2.mostrarInfo();        
+
+        // Incluimos sensores en la smartcity
+        System.out.println("Pulse <ENTER> para añadir sensor 1 a la smartcity");
         entrada.nextLine();
+        city.agregarSensor(s1.getCoordenadaX(), s1.getCoordenadaY(), s1);
+        ((SensorAmbiental31) s1).setCiudad(city);
+        s1.mostrarInfo();
         
-        // ======== Lectura de datos del tercer sensor ========
-        System.out.println("\n🔧 Registro del sensor 3");
-        
-        System.out.print("ID: ");
-        int identificador3 = entrada.nextInt();
-        entrada.nextLine(); // limpiar buffer, para eliminar el enter pendiente
-                       // nextInt() lee sólo el número
-        
-        System.out.print("Tipo: ");
-        String tipo3 = entrada.nextLine();
-        
-        System.out.print("Ubicación (CoordenadaX): ");
-        int coordenadaX3 = entrada.nextInt();
-        entrada.nextLine(); // limpiar buffer, para eliminar el enter pendiente
-                       // nextDouble() lee sólo el número
-        
-        System.out.print("Ubicación (CoordenadaY): ");
-        int coordenadaY3 = entrada.nextInt();
+        System.out.println("Pulse <ENTER> para añadir sensor 2 a la smartcity");
         entrada.nextLine();
+        city.agregarSensor(s2.getCoordenadaX(), s2.getCoordenadaY(), s2);
+        s2.mostrarInfo();
         
-  
-
-		// Crear sensores 
-        SensorAmbiental31 sensor1 = new SensorAmbiental31(coordenadaX, coordenadaY, tipo, "CO2");
-        SensorAmbiental31 sensor2 = new SensorAmbiental31(coordenadaX2, coordenadaY2, tipo2, "");
-        SensorAmbiental31 sensor3 = new SensorAmbiental31(coordenadaX3, coordenadaY3, tipo3, "");
-
-        // Mostrar panel de control inicial
-        System.out.println("🌾 SmartCity – Panel de Control de Sensores 🌾");
-        System.out.println("-------------------------------------------");
-
-        sensor1.mostrarInfo();
-        System.out.println("-------------------------------------------");
-
-        sensor2.mostrarInfo();
-        System.out.println("-------------------------------------------");
-
-        sensor3.mostrarInfo();
-        System.out.println("-------------------------------------------");
-
-        // Actualización de ubicación
-        System.out.println("Introduzca nuevas coordenadas X e Y para el sensor 1: ");
-        sensor1.setUbicacion(entrada.nextInt(), entrada.nextInt()); 
+        System.out.println("Cambio de coordenadas de los sensores en la smartcity");
+        System.out.println("los desplazamientos en la smartcity se propagan a los sensores");
+        System.out.println("Al revés no es cierto");
         
-        System.out.println("Introduzca nuevas coordenadas X e Y para el sensor 2: ");
-        sensor2.setUbicacion(entrada.nextInt(), entrada.nextInt()); 
-        
-        System.out.println("Introduzca nuevas coordenadas X e Y para el sensor 3: ");
-        sensor3.setUbicacion(entrada.nextInt(), entrada.nextInt());  
-
-        // Mostrar valores actualizados
-        System.out.println("\n🔄 Actualización de Sensores:");
-        System.out.println("---------------- Valor Sensor 1 ------------------");
-        System.out.println(sensor1.getUbicacion());
-        System.out.println("---------------- Valor Sensor 2 -----------------");
-        System.out.println(sensor2.getUbicacion());
-        System.out.println("---------------  Valor Sensor 3 -----------------");
-        System.out.println(sensor3.getUbicacion());
-        System.out.println("-------------------------------------------");
+        System.out.println("introduzca nuevas coordenadas para sensor 1");
+        int x2 = entrada.nextInt();
+        int y2 = entrada.nextInt();
+        city.desplazarSensor(s1.getCoordenadaX(), s1.getCoordenadaY(), x2, y2, s1);
+        System.out.println(s1);
 
         // Mostrar resumen final con toString()
         System.out.println("\n📋 Resumen Final de Sensores:");
-        System.out.println(sensor1);
-        System.out.println(sensor2);
-        System.out.println(sensor3);
+        System.out.println(s1);
+        System.out.println(s2);
     }
+	
+	private static ISensor registrarSensor() {
+        System.out.println("\n🔧 Registrando sensor. Introduzca datos: ");       
+        System.out.print("Tipo: ");
+        String tipo = entrada.nextLine();
+        System.out.print(" Ubicación (CoordenadaX): ");
+        int coordenadaX = entrada.nextInt();
+        entrada.nextLine(); 
+        System.out.print("Ubicación (CoordenadaY): ");
+        int coordenadaY = entrada.nextInt();
+        entrada.nextLine();	
+        return new SensorAmbiental31(coordenadaX, coordenadaY, tipo, "units");     
+	}
 }
 
 	

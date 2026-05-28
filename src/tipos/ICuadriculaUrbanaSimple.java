@@ -1,7 +1,7 @@
 package tipos;
 
 /**
- * Interfaz que representa una cuadrícula urbana, compuesta por celdas urbanas. 
+ * Interfaz que modela una cuadrícula urbana compuesta por celdas urbanas. 
  * 
  * La cuadrícula urbana es el entorno en el que se desarrollan las actividades urbanas y 
  * donde se ubican los elementos urbanos, sensores y actuadores. 
@@ -28,14 +28,19 @@ public interface ICuadriculaUrbanaSimple {
 	 */
 	public int getNumFilas();
 	
-	
+	/**
+	 * Devuelve una referencia a la celda urbana ubicada en la fila y columna especificadas.
+	 * @param col
+	 * @param fila
+	 * @return celda urbana ubicada en la fila y columna especificadas.
+	 */
 	public CeldaUrbana getCeldaUrbana(int col, int fila);
 	
 	/**
 	 * Devuelve el estado ambiental completo de la celda.
 	 * @param col
 	 * @param fila
-	 * @return
+	 * @return estado ambiental completo de la celda
 	 */
 	public EstadoAmbiental getEstadoAmbiental(int col, int fila);
 	
@@ -49,11 +54,34 @@ public interface ICuadriculaUrbanaSimple {
 	 */
 	public double getValor(int col, int fila, String Param);
 	
+	/**
+	 * Fija el estado ambiental de la celda ubicada en la fila y columna especificadas
+	 * @param col
+	 * @param fila
+	 * @param efecto
+	 * @return código de éxito o de error
+	 */
 	public int setEstadoAmbiental(int col, int fila, EstadoAmbiental efecto);
+	
+	/**
+	 * Añade un efecto ambiental a la celda ubicada en la fila y columna especificadas
+	 * @param col
+	 * @param fila
+	 * @param efecto
+	 * @return código de éxito o de error
+	 */
 	public int addEstadoAmbiental(int col, int fila, EstadoAmbiental efecto);
 	
+	/**
+	 * Fija el valor del parámetro ambiental específicado de la celda ubicada en la fila y columna
+	 * especificadas
+	 * @param col
+	 * @param fila
+	 * @param nombre nombre del parámetro.
+	 * @param valor
+	 * @return
+	 */
 	public int setParametroAmbiental(int col, int fila, String nombre, double valor);
-	//public int addParametroAmbiental(int col, int fila, String nombre, double valor);
 	
 	
 	/**
@@ -118,20 +146,65 @@ public interface ICuadriculaUrbanaSimple {
 	
 	/**
 	 * Desplaza el elemento urbano ubicado en la celda urbana de origen especificada por sus coordenadas
+	 * a la celda especificada como destino.
+	 * Debe mantener la consistencia de coordenadas (coordenadas elmento = coordenadas celda).
 	 * @param colOrigen
 	 * @param filaOrigen
 	 * @param colDestino
 	 * @param filaDestino
-	 * @throws ExcepcionCelda Si (1) las coordenadas de origen o destino están fuera de los límites de la cuadrícula urbana,
+	 * @return código de éxito o de error
 	 */
 	public int desplazarElementoUrbano(int colOrigen, int filaOrigen, 
 			                            int colDestino, int filaDestino);
 	
+	/**
+	 * Desplaza el sensor ubicado en la celda urbana de origen especificada por sus coordenadas
+	 * a la celda especificada como destino.
+	 * Debe mantener la consistencia de coordenadas (coordenadas sensor = coordenadas celda).
+	 * @param colOrigen
+	 * @param filaOrigen
+	 * @param colDestino
+	 * @param filaDestino
+	 * @param sensor
+	 * @return código de éxito o de error
+	 */
 	public int desplazarSensor(int colOrigen, int filaOrigen, int colDestino, int filaDestino, ISensor sensor);
+	
+	/**
+	 * Desplaza el actuador ubicado en la celda urbana de origen especificada por sus coordenadas
+	 * a la celda especificada como destino.
+	 * Debe mantener la consistencia de coordenadas (coordenadas actuador = coordenadas celda).
+	 * @param colOrigen
+	 * @param filaOrigen
+	 * @param colDestino
+	 * @param filaDestino
+	 * @param sensor
+	 * @return código de éxito o de error
+	 */	
 	public int desplazarActuador(int colOrigen, int filaOrigen, int colDestino, int filaDestino, IActuador actuador);
 	
+	/**
+	 * Devuelve el elemento urbano contenido en la celda especificada por sus coordenadas
+	 * @param col
+	 * @param fila
+	 * @return elemento contenido en la celda.
+	 */
 	public IElementoUrbano getElementoUrbano(int col, int fila);
+	
+	/**
+	 * Devuelve la lista de sensores contenidos en la celda especificada por sus coordenadas
+	 * @param col
+	 * @param fila
+	 * @return lista de sensores contenidos en la celda.
+	 */
 	public ISensor[] getSensores(int col, int fila);
+	
+	/**
+	 * Devuelve la lista de actuadores contenidos en la celda especificada por sus coordenadas
+	 * @param col
+	 * @param fila
+	 * @return lista de actuadores contenidos en la celda.
+	 */	
 	public IActuador[] getActuadores(int col, int fila);
 	
 }

@@ -1,5 +1,6 @@
 package practica_3;
 
+import simulador.Ciudad0;
 import tipos.ISensor;
 
 /**
@@ -25,6 +26,8 @@ public class SensorAmbiental31 implements ISensor {
 	private int fila;
 	
 	private double valor; // valor actual de la medición
+	
+	Ciudad0 ciudad = null;
 	
 	
 	// Mejor empezar por el constructor más completo y después reutilizarlo.
@@ -98,7 +101,16 @@ public class SensorAmbiental31 implements ISensor {
 
 	@Override
 	public double getValor() {
-		return 0;
+		if (ciudad == null) {
+			return valor;
+		}
+		else {
+			return ciudad.getValor(getCoordenadaX(), getCoordenadaY(), parametro);
+		}
+	}
+	
+	public void setCiudad(Ciudad0 ciudad) {
+		this.ciudad = ciudad;
 	}
 
 	@Override
@@ -133,60 +145,57 @@ public class SensorAmbiental31 implements ISensor {
                            ", " + "ubicado en: " + getUbicacion();
     }
 	
-	public static void main(String args []) {
-		
+	
+	private static void testConstructores() {
+
+		System.out.println("Clase SensorAmbiental31 \n\n" +
+				"EJECUTANDO TEST DE CONSTRUCTORES.\n");
+
 		// Probamos la construcción del objeto con parámetros válidos y "lógicos":
 		System.out.println("Creando sensor con parámetros 'coherentes': 10, 20, C02, ppm");
 		SensorAmbiental31 s1 = new SensorAmbiental31(10, 20, "CO2", "ppm");
-		
+
 		// Llamamos implícitamente a toString que a su vez llama al resto de métodos.
 		System.out.println(" Sensor creado ----> " + s1);
 		System.out.println();
 
 		// Llamamos a mostrar info que a su vez llama al resto de métodos.
 		s1.mostrarInfo();
-		
+
 		System.out.println("------------------------------------------------------------");
 		System.out.println("Creando sensor con parámetros 'coherentes': temperatura, ºC");
 		SensorAmbiental31 s2 = new SensorAmbiental31("temperatura", "ºC");
 		System.out.println(" Sensor creado ----> " + s2);
 		System.out.println();
 		s2.mostrarInfo();
-		
+
 		System.out.println("------------------------------------------------------------");
 		System.out.println("Creando sensor con parámetros 'coherentes': CO2, ppm, constructor sin argumentos");
 		SensorAmbiental31 s3 = new SensorAmbiental31();
 		System.out.println(" Sensor creado ----> " + s3);
 		System.out.println();
 		s3.mostrarInfo();
-		
+
 		System.out.println("------------------------------------------------------------");
 		System.out.println("Creando sensor con parámetros absurdos");
 		SensorAmbiental31 s4 = new SensorAmbiental31(-45666, 238999, "verdín", "gallifantes");
 		System.out.println(" Sensor creado ----> " + s4);
 		System.out.println();
 		s4.mostrarInfo();
-		
+
 		System.out.println("------------------------------------------------------------");
-		System.out.println("Intentando crear sensor con parámetros no válidos");
+		System.out.println("Intentando crear sensor con parámetros no válidos (unidades = null");
+		System.out.println("El programa abortará su ejecución.");
 		SensorAmbiental31 s5 = new SensorAmbiental31("Jose Manuel", null);
 		System.out.println(" Sensor creado ----> " + s5);
-		System.out.println();	
-		s5.mostrarInfo();
-		System.out.println();	
-		System.out.println("¿tiene sentido?");
-		System.out.println();	
-		
-		System.out.println("------------------------------------------------------------");
-		System.out.println("Problemas:");
-		System.out.println("Incluso si el código no produce errores de compilación ni de ejecución ...\n" +
-				           "Podemos crear sensores con atributos incoherentes.\n" +
-				           "Podemos crear distintos sensores con el mismo identificador.\n\n" + 
-				           "Estos problemas deben resolverse:\n" +
-				           "- Si es posible en la propia clase.\n " +
-				           "- Si no pueden resolverse en la clase deben tratarse en el código que usa la clase.\n\n" +
-				           "Iremos añadiendo formas de solucionar estos problemas a lo largo del curso ... " 
-				          );	
+		System.out.println();
+	}
+
+	
+	
+	public static void main(String args []) {
+		testConstructores();
+	
 	}	
 
 }
