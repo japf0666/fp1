@@ -1,5 +1,7 @@
 package practica_3;
 
+import simulador.Ciudad0;
+import tipos.ICuadriculaUrbanaSimple;
 import tipos.ISensor;
 
 /**
@@ -25,6 +27,8 @@ public class SensorAmbiental31 implements ISensor {
 	private int fila;
 	
 	private double valor; // valor actual de la medición
+	
+	Ciudad0 ciudad;
 	
 	
 	// Mejor empezar por el constructor más completo y después reutilizarlo.
@@ -115,6 +119,10 @@ public class SensorAmbiental31 implements ISensor {
 	public void setUbicacion(int coordenadaX, int coordenadaY) {
 		col = coordenadaX;
 		fila = coordenadaY;	
+	}
+	
+	public void setCiudad(Ciudad0 ciudad) {
+		this.ciudad = ciudad;
 	}
 
 	@Override
