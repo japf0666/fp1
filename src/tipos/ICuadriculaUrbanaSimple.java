@@ -4,15 +4,15 @@ package tipos;
  * Interfaz que modela una cuadrícula urbana compuesta por celdas urbanas. 
  * 
  * La cuadrícula urbana es el entorno en el que se desarrollan las actividades urbanas y 
- * donde se ubican los elementos urbanos, sensores y actuadores. 
+ * donde se ubican los elementos urbanos (plazas, parques, industria, carreteras, ...), sensores y actuadores. 
  * 
  * Proporciona métodos para acceder indirectamnte a las celdas urbanas, 
  * modificar su estado ambiental y gestionar los elementos urbanos, 
  * sensores y actuadores ubicados en ellas.
  * 
  * Nota Docente: Esta interfaz esta pensada para prácticas en las que los estudiantes
- * aún no han llegado al tema de excepciones. Los métodos tienen un comportamiento por
- * defecto si los parámetros no son válidos o bien devuelven un código de error.
+ * aún no han llegado al tema de excepciones. si los parámetros no son válidos,
+ * los métodos tienen un comportamiento por defecto o bien devuelven un código de error.
  */
 public interface ICuadriculaUrbanaSimple {
 	
