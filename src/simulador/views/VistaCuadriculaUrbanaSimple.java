@@ -18,7 +18,7 @@ import tipos.CeldaUrbana;
 import tipos.ICuadriculaUrbanaSimple;
 import tipos.IActuador;
 //import tipos.IElementoUrbano;
-import tipos.ISensor;
+import tipos.ISensorSimple;
 import simulador.ElementoIndustrial;
 import simulador.ElementoPeatonal;
 import simulador.ElementoResidencial;
@@ -179,7 +179,7 @@ public class VistaCuadriculaUrbanaSimple extends JPanel {
     		return;
     	}
 
-        for (ISensor s : celda.getSensores()) {
+        for (ISensorSimple s : celda.getSensores()) {
             if (s != null) {
             	//System.out.println("pintando sensor");
             	rendererSensor.render(g2, s, px, py, cellSize);
@@ -221,7 +221,7 @@ public class VistaCuadriculaUrbanaSimple extends JPanel {
         sb.append("Elemento: ").append(elemento == null ? "none" : elemento.toString()).append("\n\n");
 
         sb.append("Sensors (").append(celda.getSensores().size()).append("):\n");
-        for (ISensor s : celda.getSensores()) {
+        for (ISensorSimple s : celda.getSensores()) {
             sb.append(" - ").append(String.valueOf(s)).append("\n");
         }
         sb.append("\nActuators (").append(celda.getActuadores().size()).append("):\n");

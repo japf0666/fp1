@@ -1,6 +1,6 @@
 package practica_3;
 
-import tipos.ISensor;
+import tipos.ISensorSimple;
 
 import java.util.Scanner;
 
@@ -13,7 +13,7 @@ import simulador.Ciudad0;
  * Añadimos un método main para probar sus métodos.
  * Una clase no está terminada hasta que no se ha probado razonablemente su funcionamiento.
  */
-public class SensAmbSM implements ISensor {
+public class SensAmbSM implements ISensorSimple {
 	
 	// Debería ser inmutable.
     private int identificador;
@@ -45,7 +45,7 @@ public class SensAmbSM implements ISensor {
 		return identificador;
 	}
 
-	@Override
+	//@Override
 	public String getDescripcion() {
 		return toString();
 	}
@@ -71,7 +71,7 @@ public class SensAmbSM implements ISensor {
 	}
 
 	@Override
-	public String getParametro() {
+	public String getTipo() {
 		return parametro;
 	}
 
@@ -89,12 +89,12 @@ public class SensAmbSM implements ISensor {
 		this.ciudad = ciudad;
 	}
 
-	@Override
+	// @Override
 	public String getUnidades() {
 		return unidades;
 	}
 
-	@Override
+	//@Override
 	public String getUbicacion() {
         return  "[" + coordenadaX + "," + coordenadaY + "]";
 	}
@@ -105,10 +105,10 @@ public class SensAmbSM implements ISensor {
         this.coordenadaY = coordenadaY;
 	}
 
-	@Override
+	//@Override
 	public void mostrarInfo() {
         System.out.println("📡 Sensor ID: " + getIdentificador());
-        System.out.println("🔎 Tipo: " + getParametro());
+        System.out.println("🔎 Tipo: " + getTipo());
         System.out.println("Ubicación: " + getUbicacion());
         System.out.println("📊 Valor actual: " + getValor() + " " + getUnidades());
         System.out.println("========================================");
@@ -116,7 +116,7 @@ public class SensAmbSM implements ISensor {
 	
 	@Override
     public String toString() {
-        return "Sensor " + getIdentificador() + " (" + getParametro() + "): " + 
+        return "Sensor " + getIdentificador() + " (" + getTipo() + "): " + 
                            getValor() + " " + getUnidades() + 
                            " " + "Ubicación: " + getUbicacion();
     }

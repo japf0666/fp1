@@ -1,6 +1,6 @@
 package practica_3;
 
-import tipos.ISensor;
+import tipos.ISensorSimple;
 
 import java.util.Scanner;
 
@@ -54,25 +54,25 @@ public class SmartCityAppV3 {
         
         // ======== Lectura de datos del primer sensor ========
         System.out.println("\n🔧 Registro del sensor 1");       
-        ISensor s1 = registrarSensor();
-        s1.mostrarInfo();
+        ISensorSimple s1 = registrarSensor();
+        ((SensorAmbiental31) s1).mostrarInfo();
         
         // ======== Lectura de datos del segundo sensor ========
         System.out.println("\n🔧 Registro del sensor 2");
-        ISensor s2 = registrarSensor();
-        s2.mostrarInfo();        
+        ISensorSimple s2 = registrarSensor();
+        ((SensorAmbiental31) s2).mostrarInfo();        
 
         // Incluimos sensores en la smartcity
         System.out.println("Pulse <ENTER> para añadir sensor 1 a la smartcity");
         entrada.nextLine();
         city.agregarSensor(s1.getCoordenadaX(), s1.getCoordenadaY(), s1);
         ((SensorAmbiental31) s1).setCiudad(city);
-        s1.mostrarInfo();
+        ((SensorAmbiental31) s1).mostrarInfo();
         
         System.out.println("Pulse <ENTER> para añadir sensor 2 a la smartcity");
         entrada.nextLine();
         city.agregarSensor(s2.getCoordenadaX(), s2.getCoordenadaY(), s2);
-        s2.mostrarInfo();
+        ((SensorAmbiental31) s2).mostrarInfo();
         
         System.out.println("Cambio de coordenadas de los sensores en la smartcity");
         System.out.println("los desplazamientos en la smartcity se propagan a los sensores");
@@ -90,7 +90,7 @@ public class SmartCityAppV3 {
         System.out.println(s2);
     }
 	
-	private static ISensor registrarSensor() {
+	private static ISensorSimple registrarSensor() {
         System.out.println("\n🔧 Registrando sensor. Introduzca datos: ");       
         System.out.print("Tipo: ");
         String tipo = entrada.nextLine();

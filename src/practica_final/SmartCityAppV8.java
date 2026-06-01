@@ -16,6 +16,8 @@ public class SmartCityAppV8 {
     private static Scanner entrada = new Scanner(System.in);
     private static ISensorSimple [] sensores = new ISensorSimple[2];
     private static int totalSensores = 0;
+    
+    private static Ciudad0 ciudad0;
 
     public static ISensorSimple buscarSensorPorId(int id) {
 
@@ -54,6 +56,12 @@ public class SmartCityAppV8 {
         System.out.println("\n👋 Hola " + nombre +
                 ", bienvenido/a a " + ciudad +
                 " (SmartCity " + año + ")");
+        
+        if (ciudad0 != null) {
+			System.out.println("⚠️ Se ha detectado un entorno simulado (Ciudad0). " +
+					"Los sensores registrados podrán interactuar con el simulador.");
+			ciudad0.setCabecera(ciudad, nombre, " " + año);
+		}
     }
 
     // MENÚ
@@ -91,15 +99,15 @@ public class SmartCityAppV8 {
           
           boolean calibrable = false, regulable = false, historial = false;
           
-          System.out.println("\n¿Es calibrabler:  ?(s/n");
+          System.out.println("\n¿Es calibrabler:  ?(s/n)");
           char respuesta = entrada.nextLine().charAt(0);
           calibrable = (respuesta == 's' || respuesta == 'S')? true : false;
           
-          System.out.println("\n¿Es regulable (fondos de escala):  ?(s/n");
+          System.out.println("\n¿Es regulable (fondos de escala):  ?(s/n)");
           respuesta = entrada.nextLine().charAt(0);
           regulable = (respuesta == 's' || respuesta == 'S')? true : false;
 
-          System.out.println("\n¿Almacena historial de medidas:  ?(s/n");
+          System.out.println("\n¿Almacena historial de medidas:  ?(s/n)");
           respuesta = entrada.nextLine().charAt(0);
           historial = (respuesta == 's' || respuesta == 'S')? true : false;
           
@@ -119,6 +127,8 @@ public class SmartCityAppV8 {
           System.out.print("Coordenada Y: ");
           int y = entrada.nextInt();
           
+          System.out.println("[" + x + ", " + y + "]");
+          
           sensores[posicionLibre].setCoordenadaX(x);
           sensores[posicionLibre].setCoordenadaY(y);
           
@@ -126,7 +136,16 @@ public class SmartCityAppV8 {
           totalSensores++;
           
           System.out.println("Nuevo sensor ----> " + sensores[posicionLibre]);
-
+          
+          // Si la ciudad no es null, se registra el sensor en el simulador
+          // y se fija la ciudad del sensor a Ciudad0 para que pueda interactuar 
+          // con el entorno simulado.
+          if (ciudad0 != null) {
+        	  ((SensorSimple)  sensores[posicionLibre]).setCiudad(ciudad0);
+			  ciudad0.agregarSensor(sensores[posicionLibre].getCoordenadaX(), 
+					                sensores[posicionLibre].getCoordenadaY(), 
+					                sensores[posicionLibre]);	  
+          }
        }
     }
 
@@ -396,7 +415,8 @@ public class SmartCityAppV8 {
                     break;
 
                 case 6:
-                    comprobarIntervencion();
+                    //comprobarIntervencion();
+                	System.out.println("No implementado en esta versión");
                     break;  
                 
                 case 7:

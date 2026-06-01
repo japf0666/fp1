@@ -2,7 +2,7 @@ package simulador;
 
 import tipos.ISensor;
 
-public class SensorSimple implements ISensor {
+public class SensorSimpleOld implements ISensor {
 	
 	public static int id = 1;
 
@@ -17,7 +17,7 @@ public class SensorSimple implements ISensor {
 	private volatile double valor; // valor actual de la medición
 	
 	
-	public SensorSimple(int x, int y, String parametro, String unidades) {
+	public SensorSimpleOld(int x, int y, String parametro, String unidades) {
 		col = x;
 		fila = y;
 		this.parametro = parametro;

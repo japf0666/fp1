@@ -22,7 +22,7 @@ public class CeldaUrbana  {
 	
 	EstadoAmbiental estadoAmbiental = new EstadoAmbiental(); // Estado ambiental inicial vacío sin parámetros.
 	int col, fila;
-	ArrayList<ISensor> sensores = new ArrayList<>();
+	ArrayList<ISensorSimple> sensores = new ArrayList<>();
 	ArrayList<IActuador> actuadores = new ArrayList<>();
 	IElementoUrbano elemento;
 	
@@ -170,7 +170,7 @@ public class CeldaUrbana  {
 	 * Obtiene la lista de sensores ubicados en la celda.
 	 * @return
 	 */
-	public ArrayList<ISensor> getSensores() {
+	public ArrayList<ISensorSimple> getSensores() {
         return sensores; //getByType(ISensorSimulado.class);
     }
 	
@@ -179,11 +179,11 @@ public class CeldaUrbana  {
 	 * @param sensor
 	 * @return true si el sensor está instalado en la celda, false en caso contrario
 	 */
-	public boolean contieneSensor(ISensor sensor) {
+	public boolean contieneSensor(ISensorSimple sensor) {
 		if (sensor == null) {
 			return false;
 		}
-		for (ISensor s: sensores) {
+		for (ISensorSimple s: sensores) {
 			if (s.getIdentificador() == sensor.getIdentificador()) {
 				return true;
 			}
@@ -196,7 +196,7 @@ public class CeldaUrbana  {
 	 * Las coordenadas del sensor deben coincidir con las de la celda.
 	 * @param sensor
 	 */
-	public void addSensor(ISensor sensor) {
+	public void addSensor(ISensorSimple sensor) {
 		if (sensor != null && !contieneSensor(sensor)) {
 			this.sensores.add(sensor);
 			System.out.println("CeldaUrbana.addSensor at (" + col + ", " + fila + ") ---> " + sensor);
@@ -207,7 +207,7 @@ public class CeldaUrbana  {
 	 * Elimina sensor de la celda.
 	 * @param sensor
 	 */
-	public void removeSensor(ISensor sensor) {
+	public void removeSensor(ISensorSimple sensor) {
 		if (contieneSensor(sensor)) {
 			this.sensores.remove(sensor);
 		}
@@ -284,7 +284,7 @@ public class CeldaUrbana  {
 		String s1 = "Celda at (col, fila): " + col + ", " + fila + "\n";
 		
 		String s2 = "Sensores ---> \n";
-		for (ISensor s : sensores) {
+		for (ISensorSimple s : sensores) {
 			s2 += s.toString();
 			s2 += "\n";
 		}

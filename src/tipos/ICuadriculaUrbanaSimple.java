@@ -103,7 +103,7 @@ public interface ICuadriculaUrbanaSimple {
 	 * @param sensor
 	 * @return codigo de éxito o de error definido por la implementación.
 	 */
-	public int agregarSensor(int col, int fila, ISensor sensor);
+	public int agregarSensor(int col, int fila, ISensorSimple sensor);
 	
 	/**
 	 * Añade un actuador a la celda urbana especificada por sus coordenadas (col, fila).
@@ -132,7 +132,7 @@ public interface ICuadriculaUrbanaSimple {
 	 * @param sensor
 	 * @return sensor eliminado o null si no se ha quitado ningún elmento.
 	 */
-	public ISensor quitarSensor(int col, int fila, ISensor sensor);
+	public ISensorSimple quitarSensor(int col, int fila, ISensorSimple sensor);
 	
 	/**
 	 * Elimina el actuador especificado ubicado en la celda urbana especificada por sus coordenadas (col, fila).
@@ -168,7 +168,7 @@ public interface ICuadriculaUrbanaSimple {
 	 * @param sensor
 	 * @return código de éxito o de error
 	 */
-	public int desplazarSensor(int colOrigen, int filaOrigen, int colDestino, int filaDestino, ISensor sensor);
+	public int desplazarSensor(int colOrigen, int filaOrigen, int colDestino, int filaDestino, ISensorSimple sensor);
 	
 	/**
 	 * Desplaza el actuador ubicado en la celda urbana de origen especificada por sus coordenadas
@@ -197,7 +197,7 @@ public interface ICuadriculaUrbanaSimple {
 	 * @param fila
 	 * @return lista de sensores contenidos en la celda.
 	 */
-	public ISensor[] getSensores(int col, int fila);
+	public ISensorSimple[] getSensores(int col, int fila);
 	
 	/**
 	 * Devuelve la lista de actuadores contenidos en la celda especificada por sus coordenadas

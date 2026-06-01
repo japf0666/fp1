@@ -2,7 +2,7 @@ package practica_3;
 
 import simulador.Ciudad0;
 import tipos.ICuadriculaUrbanaSimple;
-import tipos.ISensor;
+import tipos.ISensorSimple;
 
 /**
  * Implementación de ISensor que:
@@ -14,7 +14,7 @@ import tipos.ISensor;
  * También proporciona una solución (no una buena solución) para evitar la creación de sensores
  * mal formados.
  */
-public class SensorAmbiental31 implements ISensor {
+public class SensorAmbiental31 implements ISensorSimple {
 	
 	public static int id = 1;
 
@@ -72,7 +72,7 @@ public class SensorAmbiental31 implements ISensor {
 		return identificador;
 	}
 
-	@Override
+	//@Override
 	public String getDescripcion() {
 		return toString();
 	}
@@ -98,7 +98,7 @@ public class SensorAmbiental31 implements ISensor {
 	}
 
 	@Override
-	public String getParametro() {
+	public String getTipo() {
 		return parametro;
 	}
 
@@ -116,12 +116,12 @@ public class SensorAmbiental31 implements ISensor {
 		this.ciudad = ciudad;
 	}
 
-	@Override
+	//@Override
 	public String getUnidades() {
 		return unidades;
 	}
 
-	@Override
+	//@Override
 	public String getUbicacion() {
 		return "[" + col + ", " + fila + "]";
 	}
@@ -133,10 +133,10 @@ public class SensorAmbiental31 implements ISensor {
 	}
 	
 
-	@Override
+	//@Override
 	public void mostrarInfo() {
         System.out.println("📡 Sensor ID: " + getIdentificador());
-        System.out.println("🔎 Tipo: " + getParametro());
+        System.out.println("🔎 Tipo: " + getTipo());
         System.out.println("Ubicación: " + getUbicacion());
         System.out.println("📊 Valor actual: " + getValor() + " " + getUnidades());
         System.out.println("========================================");
@@ -144,7 +144,7 @@ public class SensorAmbiental31 implements ISensor {
 	
 	@Override
     public String toString() {
-        return "Sensor(" + getIdentificador() + ") de " + getParametro() + ", valor = " + 
+        return "Sensor(" + getIdentificador() + ") de " + getTipo() + ", valor = " + 
                            getValor() + " " + getUnidades() + 
                            ", " + "ubicado en: " + getUbicacion();
     }

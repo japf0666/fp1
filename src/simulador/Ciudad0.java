@@ -17,7 +17,8 @@ import tipos.EstadoAmbiental;
 import tipos.IActuador;
 import tipos.ICuadriculaUrbanaSimple;
 import tipos.IElementoUrbano;
-import tipos.ISensor;
+import tipos.ISensorSimple;
+import tipos.SensorSimple;
 
 
 /**
@@ -46,6 +47,10 @@ public class Ciudad0 extends JFrame implements ICuadriculaUrbanaSimple {
     
     public Ciudad0() {
 		this(new CuadriculaUrbanaSimple(10, 10)); // Tamaño por defecto de 10x10
+	}
+    
+    public void setCabecera(String nombreCiudad, String nombreUsuario, String fecha) {
+		setTitle("Bienvenido " + nombreUsuario + " a: " + nombreCiudad + " - Fecha: " + fecha);
 	}
 
 
@@ -144,7 +149,7 @@ public class Ciudad0 extends JFrame implements ICuadriculaUrbanaSimple {
     
     // Adición de un sensor a la celda, con actualización visual inmediata
 	@Override
-    public int agregarSensor(int col, int fila, ISensor sensor) {
+    public int agregarSensor(int col, int fila, ISensorSimple sensor) {
     	
     	int result = cuadricula.agregarSensor(col, fila, sensor);
     	if (result == 0) {
@@ -158,9 +163,9 @@ public class Ciudad0 extends JFrame implements ICuadriculaUrbanaSimple {
     }
     
 	@Override
-	public ISensor quitarSensor(int col, int fila, ISensor sensor) {
+	public ISensorSimple quitarSensor(int col, int fila, ISensorSimple sensor) {
 		
-		ISensor result = cuadricula.quitarSensor(col, fila, sensor);
+		ISensorSimple result = cuadricula.quitarSensor(col, fila, sensor);
     	if (result != null) {
     		appendMensaje("Quitando sensor '" + /*result.getDescripcion() +*/ "' de celda (" + col + ", " + fila + ")");
     		vistaCuadricula.repaint();
@@ -288,7 +293,7 @@ public class Ciudad0 extends JFrame implements ICuadriculaUrbanaSimple {
 	}
 	
     @Override
-	public int desplazarSensor(int colOrigen, int filaOrigen, int colDestino, int filaDestino, ISensor sensor) {
+	public int desplazarSensor(int colOrigen, int filaOrigen, int colDestino, int filaDestino, ISensorSimple sensor) {
 
 		int result = cuadricula.desplazarSensor(colOrigen, filaOrigen, colDestino, filaDestino, sensor);
     	if (result == 0) {
@@ -308,7 +313,7 @@ public class Ciudad0 extends JFrame implements ICuadriculaUrbanaSimple {
 	}
 	
     @Override
-	public ISensor[] getSensores(int col, int fila) {
+	public ISensorSimple[] getSensores(int col, int fila) {
 		return cuadricula.getSensores(col, fila);
 	}
 
@@ -411,7 +416,7 @@ public class Ciudad0 extends JFrame implements ICuadriculaUrbanaSimple {
         ciudad.mostrarParametro("CO2");
         
         // Agregar un sensor de CO2 en la celda (4,4)
-        ciudad.agregarSensor(4, 4, new SensorSimple(4, 4, "CO2", "ppm"));
+        ciudad.agregarSensor(4, 4, new SensorSimple(4, 4, "CO2"));
         
         // Agregar un actuador de purificación de aire en la celda (5,5)
         ciudad.agregarActuador(5, 5, new ActuadorSimple(5, 5, "CO2", "ppm"));

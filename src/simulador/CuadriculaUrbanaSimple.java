@@ -7,7 +7,7 @@ import tipos.EstadoAmbiental;
 import tipos.IActuador;
 import tipos.ICuadriculaUrbanaSimple;
 import tipos.IElementoUrbano;
-import tipos.ISensor;
+import tipos.ISensorSimple;
 import tipos.ParametroAmbiental;
 
 /**
@@ -150,7 +150,7 @@ public class CuadriculaUrbanaSimple implements ICuadriculaUrbanaSimple {
 	}
 
 	@Override
-	public int agregarSensor(int col, int fila, ISensor sensor) {
+	public int agregarSensor(int col, int fila, ISensorSimple sensor) {
 		if (!validarCoordenadas(col, fila)) {
 			System.out.println("Error ---> agregarSensor en (" + col + ", " + fila +
 					            "), columna o fila fuera de rango");
@@ -212,7 +212,7 @@ public class CuadriculaUrbanaSimple implements ICuadriculaUrbanaSimple {
 	}
 
 	@Override
-	public ISensor quitarSensor(int col, int fila, ISensor sensor) {
+	public ISensorSimple quitarSensor(int col, int fila, ISensorSimple sensor) {
 		if (!validarCoordenadas(col, fila)) {
 			System.out.println("Error ---> quitarSensor en (" + col + ", " + fila +
 					            "), columna o fila fuera de rango");
@@ -282,7 +282,7 @@ public class CuadriculaUrbanaSimple implements ICuadriculaUrbanaSimple {
 	}
 
 	@Override
-	public int desplazarSensor(int colOrigen, int filaOrigen, int colDestino, int filaDestino, ISensor sensor) {
+	public int desplazarSensor(int colOrigen, int filaOrigen, int colDestino, int filaDestino, ISensorSimple sensor) {
 
 		if (!validarCoordenadas(colOrigen, filaOrigen)) {
 			System.out.println("Error ---> desplazarSensor en (" + colOrigen + ", " + filaOrigen +
@@ -352,9 +352,9 @@ public class CuadriculaUrbanaSimple implements ICuadriculaUrbanaSimple {
 	}
 
 	@Override
-	public ISensor[] getSensores(int col, int fila) {
-		ArrayList<ISensor> listaSensores = cuadricula[fila][col].getSensores();
-		ISensor[] sensores = new ISensor[listaSensores.size()];
+	public ISensorSimple[] getSensores(int col, int fila) {
+		ArrayList<ISensorSimple> listaSensores = cuadricula[fila][col].getSensores();
+		ISensorSimple[] sensores = new ISensorSimple[listaSensores.size()];
 		for (int i = 0; i < sensores.length; i++) {
 			sensores[i] = listaSensores.get(i);
 		}
