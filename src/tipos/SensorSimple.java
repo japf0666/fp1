@@ -3,6 +3,8 @@ package tipos;
 import java.util.Random;
 import java.util.UUID;
 
+import simulador.Ciudad0;
+
 /**
  *  Implementación de ISensorSimple que:
  * - Calcula internamente el identificar del Sensor (así lo sacamos del constructor).
@@ -25,7 +27,8 @@ public class SensorSimple implements ISensorSimple {
 	protected int fila;
 	
 	// Definición más general de una cuadrícula urbana, no ligada a ninguna implementación.
-	protected ICuadriculaUrbanaSimple ciudad;
+	//protected ICuadriculaUrbanaSimple ciudad;
+	Ciudad0 ciudad;
 	
 	private Random rnd = new Random();
 	
@@ -44,7 +47,7 @@ public class SensorSimple implements ISensorSimple {
 	}
 	
 	public SensorSimple() {
-		this(0, 0, "ratio");
+		this(0, 0, "no determinado");
 	}
 
 	@Override
@@ -73,9 +76,10 @@ public class SensorSimple implements ISensorSimple {
 	}
 
 	@Override
-	public String getParametro() {
+	public String getTipo() {
 		return parametro;
 	}
+	
 
 	@Override
 	public double getValor() {
@@ -88,10 +92,11 @@ public class SensorSimple implements ISensorSimple {
 		}
 	}
 
-	@Override
+	
 	public String getUbicacion() {
 		return "[" + col + ", " + fila + "]";
 	}
+
 
 	@Override
 	public void setUbicacion(int coordenadaX, int coordenadaY) {
@@ -99,10 +104,10 @@ public class SensorSimple implements ISensorSimple {
 		col = coordenadaX;
 	}
 
-	@Override
+	
 	public void mostrarInfo() {
         System.out.println("📡 Sensor ID: " + getIdentificador());
-        System.out.println("🔎 Tipo: " + getParametro());
+        System.out.println("🔎 Tipo: " + getTipo());
         System.out.println("Ubicación: " + getUbicacion());
         System.out.println("📊 Valor actual: " + getValor());
         System.out.println("========================================");
@@ -110,10 +115,10 @@ public class SensorSimple implements ISensorSimple {
 	}
 	
 	public String toString() {
-		return this.getClass().getSimpleName() + "id = " + this.getIdentificador() + ", param = " + this.getParametro() + ", at [" +  this.getCoordenadaX() + ", " + this.getCoordenadaY() + "]";
+		return /*this.getClass().getSimpleName()  + */ " Sensor, id = " + this.getIdentificador() + ", param = " + this.getTipo() + ", at [" +  this.getCoordenadaX() + ", " + this.getCoordenadaY() + "]";
 	}
 	
-	public void setCiudad(ICuadriculaUrbanaSimple ciudad) {
+	public void setCiudad(Ciudad0 ciudad) {
 		this.ciudad = ciudad;
 	}
 

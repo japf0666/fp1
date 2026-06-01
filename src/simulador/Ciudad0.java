@@ -118,7 +118,7 @@ public class Ciudad0 extends JFrame implements ICuadriculaUrbanaSimple {
     public int agregarElementoUrbano(int col, int fila, IElementoUrbano elemento) {
     	int result = cuadricula.agregarElementoUrbano(col, fila, elemento);
     	if (result == 0) {
-    		appendMensaje("Agregando elemento '" + elemento.getDescripcion() + "' en celda (" + col + ", " + fila + ")");
+    		appendMensaje("Agregando elemento '" /*+ elemento.getDescripcion() */+ "' en celda (" + col + ", " + fila + ")");
     		vistaCuadricula.repaint();
     	}
     	else {
@@ -131,7 +131,7 @@ public class Ciudad0 extends JFrame implements ICuadriculaUrbanaSimple {
 	public IElementoUrbano quitarElementoUrbano(int col, int fila) {
 		IElementoUrbano result = cuadricula.quitarElementoUrbano(col, fila);
     	if (result != null) {
-    		appendMensaje("Quitando actuador '" + result.getDescripcion() + "' de celda (" + col + ", " + fila + ")");
+    		appendMensaje("Quitando actuador '" + /*result.getDescripcion() +*/ "' de celda (" + col + ", " + fila + ")");
     		vistaCuadricula.repaint();
     	}
     	else {
@@ -148,7 +148,7 @@ public class Ciudad0 extends JFrame implements ICuadriculaUrbanaSimple {
     	
     	int result = cuadricula.agregarSensor(col, fila, sensor);
     	if (result == 0) {
-    		appendMensaje("Agregando sensor '" + sensor.getDescripcion() + "' en celda (" + col + ", " + fila + ")");
+    		appendMensaje("Agregando sensor '" + /*sensor.getDescripcion() +*/ "' en celda (" + col + ", " + fila + ")");
     		vistaCuadricula.repaint();
     	}
     	else {
@@ -162,7 +162,7 @@ public class Ciudad0 extends JFrame implements ICuadriculaUrbanaSimple {
 		
 		ISensor result = cuadricula.quitarSensor(col, fila, sensor);
     	if (result != null) {
-    		appendMensaje("Quitando sensor '" + result.getDescripcion() + "' de celda (" + col + ", " + fila + ")");
+    		appendMensaje("Quitando sensor '" + /*result.getDescripcion() +*/ "' de celda (" + col + ", " + fila + ")");
     		vistaCuadricula.repaint();
     	}
     	else {
@@ -179,7 +179,7 @@ public class Ciudad0 extends JFrame implements ICuadriculaUrbanaSimple {
 
     	int result = cuadricula.agregarActuador(col, fila, actuador);
     	if (result == 0) {
-    		appendMensaje("Agregando actuador '" + actuador.getDescripcion() + "' en celda (" + col + ", " + fila + ")");
+    		appendMensaje("Agregando actuador '" + /*actuador.getDescripcion() + */ "' en celda (" + col + ", " + fila + ")");
     		vistaCuadricula.repaint();
     	}
     	else {
@@ -192,7 +192,7 @@ public class Ciudad0 extends JFrame implements ICuadriculaUrbanaSimple {
 	public IActuador quitarActuador(int col, int fila, IActuador actuador) {
 		IActuador result = cuadricula.quitarActuador(col, fila, actuador);
     	if (result != null) {
-    		appendMensaje("Quitando actuador '" + actuador.getDescripcion() + "' de celda (" + col + ", " + fila + ")");
+    		appendMensaje("Quitando actuador '" + /*actuador.getDescripcion() +*/ "' de celda (" + col + ", " + fila + ")");
     		vistaCuadricula.repaint();
     	}
     	else {

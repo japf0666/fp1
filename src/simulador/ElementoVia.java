@@ -30,6 +30,13 @@ public class ElementoVia extends ElementoUrbanoAbstracto {
 	public int getIdentificador() {
 		return identificador;
 	}
+
+	@Override
+	public void setUbicacion(int coordenadaX, int coordenadaY) {
+		col = coordenadaX;
+		fila = coordenadaY;
+		
+	}
 	
 }
 

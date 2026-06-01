@@ -5,6 +5,7 @@ package tipos;
  */
 public interface IActuador extends IUbicable{
 
-	void actuar();
+	void actuar(double consigna);
+	double getConsignaActual();
 
 }

@@ -17,6 +17,8 @@ public class ActuadorSimple implements IActuador {
 	private int col;
 	private int fila;
 	
+	double consignaActual;
+	
 	public ActuadorSimple(int x, int y, String parametro, String unidades) {
 		col = x;
 		fila = y;
@@ -32,7 +34,7 @@ public class ActuadorSimple implements IActuador {
 		return identificador;
 	}
 
-	@Override
+	//@Override
 	public String getDescripcion() {
 		return toString();
 	}
@@ -58,14 +60,26 @@ public class ActuadorSimple implements IActuador {
 	}
 
 	@Override
-	public void actuar() {
+	public void actuar(double consigna) {
 		System.out.println("Actuador [" + identificador + "] actuando :p");
+		this.consignaActual = consigna;
 	}
 	
 	public String toString() {
 		return "ActuadorSimple [id=" + id + ", parametro=" + 
 	            parametro + ", unidades=" + unidades + 
 				", col=" + col + ", fila=" + fila + "]";
+	}
+
+	@Override
+	public void setUbicacion(int coordenadaX, int coordenadaY) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public double getConsignaActual() {
+		return consignaActual;
 	}
 
 }

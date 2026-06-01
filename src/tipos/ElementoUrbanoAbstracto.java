@@ -13,10 +13,12 @@ public abstract class ElementoUrbanoAbstracto implements IElementoUrbano {
 		this.fila = f;	
 	}
 
+	/*
 	@Override
 	public String getDescripcion() {
 		return nombre;
 	}
+	*/
 
 	@Override
 	public int getCoordenadaX() {

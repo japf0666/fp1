@@ -33,7 +33,7 @@ public class SensorSimple implements ISensor {
 		return identificador;
 	}
 
-	@Override
+	//@Override
 	public String getDescripcion() {
 		return toString();
 	}

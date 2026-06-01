@@ -63,19 +63,23 @@ public class SensorConHistorial extends SensorAjustable implements IRegistrable 
 		return historial.getMinimo(nLecturas);
 	}
 	
+	public HistorialLecturas getHistorial() {
+		return historial;
+	}
+	
 	@Override
 	public double getValor() {
 		
 		// Obtenemos valor.
-		double v = super.getValor();
+		double valor = super.getValor();
 
 		// Creamos lectura.
 		LecturaSensor lectura = new LecturaSensor(
-		         col, fila, getParametro(), v, new Date());
+		         col, fila, getTipo(), valor, new Date());
 		
 		// La agregamos al historial.
 		historial.agregarLectura(lectura);		
-		return v;
+		return valor;
 	}
 	
 	/**
@@ -114,12 +118,12 @@ public class SensorConHistorial extends SensorAjustable implements IRegistrable 
 		
 		public LecturaSensor[] getLecturas(int nLecturas) {
 			
-			int offset = (nLecturas <= 0 || nLecturas > disponibles)? disponibles: nLecturas;
-			int primerIndice = (indice - offset + lecturas.length) % lecturas.length;
+			int delta = (nLecturas <= 0 || nLecturas > disponibles)? disponibles: nLecturas;
+			int primerIndice = (indice - delta + lecturas.length) % lecturas.length;
 			
 			//System.out.println("nLecturas = " + nLecturas + ", offset = " + offset + ", " + "primer indice = " + primerIndice);
 			
-			LecturaSensor resultado[] = new LecturaSensor[offset];
+			LecturaSensor resultado[] = new LecturaSensor[delta];
 			
 			for (int i = 0; i < resultado.length; i++) {
 				if (lecturas[(primerIndice + i) % lecturas.length] != null) {
@@ -207,6 +211,12 @@ public class SensorConHistorial extends SensorAjustable implements IRegistrable 
 		}
 		
 		
+	}
+
+	@Override
+	public int getCapacidad() {
+		// TODO Auto-generated method stub
+		return capacidad;
 	}
 	
 

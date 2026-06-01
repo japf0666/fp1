@@ -11,7 +11,7 @@ package tipos;
  * Esta interfaz modela al sensor más simple posible.
  * La implementaciones pueden extenderse y especializarse implementando otras interfaces especificas con 
  * funcionalidad adicional (calibración, valores de fondo, historial de lecturas, etc.)
- * aplicando el principio de segregación de intergaces.
+ * aplicando el principio de segregación de interfaces.
  * 
  * Se asume que la ciudad está organizada según una cuadrícula urbana.
  * donde cada elemento puede ser colocado en una celda específica de la 
@@ -19,8 +19,8 @@ package tipos;
  * 
  * También se asume que:
  * - cada sensor sólo mide un parámetro escalar en unas unidades específicas.
- * - el identificador del sensor su parárámetro asociado son en principio inmutables.
- * - el sensor obtiene su valor a través de la celda urbana en la que se encuentra ubicada,
+ * - el identificador del sensor y su parárámetro asociado son en principio inmutables.
+ * - el sensor obtiene su valor a través de la celda urbana en la que se encuentra ubicado,
  *   por ello no hay un método para establecer el valor del sensor.
  * - La ubicación del sensor puede cambiarse.
  * 
@@ -30,44 +30,44 @@ package tipos;
  *
  */
 
-public interface ISensorSimple {
+public interface ISensorSimple extends IUbicable {
 	
 	
     /**
      * devuelve el identificador único del objeto ubicable
      * @return identificador
      */
-	int getIdentificador();
+	//int getIdentificador();
 
 	/**
 	 * Devielve coordenada X (columna)
 	 * @return coordenada X (columna)
 	 */
-	int getCoordenadaX();  // columna
+	//int getCoordenadaX();  // columna
 	
 	/**
 	 * Devielve coordenada Y (fila)
 	 * @return coordenada Y (fila)
 	 */
-	int getCoordenadaY();  // fila	
+	//int getCoordenadaY();  // fila	
 	
 	/**
 	 * Fija coordenada X (columna)
 	 * @param col
 	 */
-	void setCoordenadaX(int col);
+	//void setCoordenadaX(int col);
 	
 	/**
 	 * Fija coordenada Y (fila)
 	 * @param fila
 	 */
-	void setCoordenadaY(int fila);	
+	//void setCoordenadaY(int fila);	
 	
     /**
 	 * Devuelve el nombre del parámetro que lee el sensor
 	 * @return parametro que mide el sensor (e.g., calidad del aire, ruido, temperatura)
 	 */
-    public String getParametro();
+    public String getTipo();
 
     /**
      * Valor actual del sensor, que puede variar dependiendo del tipo de sensor 
@@ -85,19 +85,19 @@ public interface ISensorSimple {
 	 * Devuelve la ubicación del sensor en formato de coordenadas (x, y).
 	 * @return ubicación del sensor en formato de coordenadas (e.g., "[3,5]")
 	 */
-    public String getUbicacion();
+    //public String getUbicacion();
 
     /**
      * Establece la ubicación del sensor en la ciudad utilizando coordenadas (x, y).
      * @param coordenadaX	columna en la que se encuentra el sensor
      * @param coordenadaY 	fila en la que se encuentra el sensor
      */
-    public void setUbicacion(int coordenadaX, int coordenadaY);
+    //public void setUbicacion(int coordenadaX, int coordenadaY);
     
     /**
      * Muestra toda la información relevante del sensor, incluyendo su identificador, tipo, 
      * ubicación y valor actual.
      */
-    public void mostrarInfo();
+    //public void mostrarInfo();
 
 }

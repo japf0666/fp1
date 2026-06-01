@@ -26,11 +26,14 @@ public interface IUbicable {
 	 * Devuelve una descripción del objeto ubicable. 
 	 * @return
 	 */
-	String getDescripcion();
+	//String getDescripcion();
 	
 	int getCoordenadaX();  // columna
 	int getCoordenadaY();  // fila	
 	
 	void setCoordenadaX(int col);
 	void setCoordenadaY(int fila);
+	
+	
+	public void setUbicacion(int coordenadaX, int coordenadaY);
 }
