@@ -3,7 +3,9 @@ package tipos;
 import java.util.Random;
 import java.util.UUID;
 
+//........................................................
 import simulador.Ciudad0;
+//........................................................
 
 /**
  *  Implementación de ISensorSimple que:
@@ -26,8 +28,9 @@ public class SensorSimple implements ISensorSimple {
 	protected int col;
 	protected int fila;
 	
+	// ...........................................................................................
 	// Definición más general de una cuadrícula urbana, no ligada a ninguna implementación.
-	//protected ICuadriculaUrbanaSimple ciudad;
+	// protected ICuadriculaUrbanaSimple ciudad;
 	Ciudad0 ciudad;
 	
 	private Random rnd = new Random();
@@ -50,6 +53,8 @@ public class SensorSimple implements ISensorSimple {
 		this(0, 0, "no determinado");
 	}
 
+	
+	// IMPLEMENTACIÓN DE IUbicable ....................................
 	@Override
 	public int getIdentificador() {
 		return identificador;
@@ -75,6 +80,7 @@ public class SensorSimple implements ISensorSimple {
 		this.fila = fila;
 	}
 
+	// IMPLEMENTACIÓN DE ISensorSimple ....................................
 	@Override
 	public String getTipo() {
 		return parametro;
@@ -83,6 +89,8 @@ public class SensorSimple implements ISensorSimple {
 
 	@Override
 	public double getValor() {
+		
+		// ..................................................................
 		if (ciudad == null) {
 			double v = 10 * rnd.nextDouble();
 			return v;
@@ -90,6 +98,7 @@ public class SensorSimple implements ISensorSimple {
 		else {
 			return ciudad.getValor(col, fila, parametro);
 		}
+		// ..................................................................
 	}
 
 	
@@ -115,11 +124,13 @@ public class SensorSimple implements ISensorSimple {
 	}
 	
 	public String toString() {
-		return /*this.getClass().getSimpleName()  + */ " Sensor, id = " + this.getIdentificador() + ", param = " + this.getTipo() + ", at [" +  this.getCoordenadaX() + ", " + this.getCoordenadaY() + "]";
+		return this.getClass().getSimpleName()  + " Sensor, id = " + this.getIdentificador() + ", param = " + this.getTipo() + ", at [" +  this.getCoordenadaX() + ", " + this.getCoordenadaY() + "]";
 	}
 	
+	// ...........................................................................................
 	public void setCiudad(Ciudad0 ciudad) {
 		this.ciudad = ciudad;
 	}
+	// ...........................................................................................
 
 }

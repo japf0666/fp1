@@ -9,12 +9,12 @@ import java.util.Random;
  */
 public class LecturaSensor {
 	
-	double value;
-	int x;
-	int y;
-	Date time;
-	int sensorId;
-	String parameter;
+	private double value;
+	private int x;
+	private int y;
+	private Date time;
+	private int sensorId;
+	private String parameter;
 	
 	public LecturaSensor(int x, int y, String param, double valor, Date time) {
 		this.x = x;
@@ -24,7 +24,14 @@ public class LecturaSensor {
 		this.time = time;
 	}
 	
-	// Método estático para generar lecturas aleatorias (para tests).
+	/**
+	 * Método estático para generar lecturas aleatorias (para tests).
+	 * @param numLecturas número de lecturas a generar
+	 * @param parametro nombre del parámetro medido (ej. CO2, temperatura, ruido...)
+	 * @param media valor medio de las lecturas a generar
+	 * @param varianza varianza de las lecturas a generar (si es menor que media/2, se usará media/10)
+	 * @return un array de lecturas generadas aleatoriamente con los parámetros indicados
+	 */
 	public static LecturaSensor[] generarLecturas(
 			int numLecturas,
 			String parametro,

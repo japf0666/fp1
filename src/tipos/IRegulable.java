@@ -2,8 +2,7 @@ package tipos;
 
 /**
  * Define un método para ajustar los fondos de escala de sensores y actuadores.
- * 
- * Esta versión asume que aun no se ha impartido el tema de excepciones.
+ * es decir, valor mínimo y valor máximo, y dos métodos para obtenerlos
  */
 
 public interface IRegulable {

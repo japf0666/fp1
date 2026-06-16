@@ -12,7 +12,8 @@ public interface IRegistrable {
 	/**
 	 * 
 	 * @param nLecturas
-	 * @return un array con las últimas nLecturas realizadas por el sensor o actuador. Si no se han realizado nLecturas, se devolverán las realizadas hasta el momento.
+	 * @return un array con las últimas nLecturas realizadas por el sensor o actuador. 
+	 * Si no se han realizado nLecturas, se devolverán las realizadas hasta el momento.
 	 */
 	public LecturaSensor [] getLecturas(int nLecturas);	
 	

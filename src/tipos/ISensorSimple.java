@@ -34,36 +34,6 @@ public interface ISensorSimple extends IUbicable {
 	
 	
     /**
-     * devuelve el identificador único del objeto ubicable
-     * @return identificador
-     */
-	//int getIdentificador();
-
-	/**
-	 * Devielve coordenada X (columna)
-	 * @return coordenada X (columna)
-	 */
-	//int getCoordenadaX();  // columna
-	
-	/**
-	 * Devielve coordenada Y (fila)
-	 * @return coordenada Y (fila)
-	 */
-	//int getCoordenadaY();  // fila	
-	
-	/**
-	 * Fija coordenada X (columna)
-	 * @param col
-	 */
-	//void setCoordenadaX(int col);
-	
-	/**
-	 * Fija coordenada Y (fila)
-	 * @param fila
-	 */
-	//void setCoordenadaY(int fila);	
-	
-    /**
 	 * Devuelve el nombre del parámetro que lee el sensor
 	 * @return parametro que mide el sensor (e.g., calidad del aire, ruido, temperatura)
 	 */
@@ -75,7 +45,9 @@ public interface ISensorSimple extends IUbicable {
      * grados Celsius para un sensor de temperatura).
      * 
      * Se asume que el valor del sensor se obtiene a través de la celda urbana en la que se encuentra ubicado,
-     * o bien  se genera según una lógica interna. No hay método setValor().
+     * o bien  se genera según una lógica interna.
+     * 
+     * No tiene sentido un método setValor() para poder establecerlo.
      * 
      * @return valor actual del sensor (e.g., nivel de contaminación, decibelios, grados Celsius)
      */

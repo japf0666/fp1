@@ -63,9 +63,11 @@ public class SensorConHistorial extends SensorAjustable implements IRegistrable 
 		return historial.getMinimo(nLecturas);
 	}
 	
+	/*
 	public HistorialLecturas getHistorial() {
 		return historial;
 	}
+	*/
 	
 	@Override
 	public double getValor() {
@@ -94,7 +96,7 @@ public class SensorConHistorial extends SensorAjustable implements IRegistrable 
 		
 		public HistorialLecturas(int capacidad) {
 			int tamanio = capacidad >= 1? capacidad:100;
-			lecturas = new LecturaSensor[capacidad];
+			lecturas = new LecturaSensor[tamanio];
 		}
 		
 		public HistorialLecturas() {
@@ -118,7 +120,10 @@ public class SensorConHistorial extends SensorAjustable implements IRegistrable 
 		
 		public LecturaSensor[] getLecturas(int nLecturas) {
 			
+			//Si se pide un número inválido de lecturas o más de las que hay disponibles, se devuelven las disponibles.
 			int delta = (nLecturas <= 0 || nLecturas > disponibles)? disponibles: nLecturas;
+			
+			//Calcula dónde empiezan la lecturas a devolver			
 			int primerIndice = (indice - delta + lecturas.length) % lecturas.length;
 			
 			//System.out.println("nLecturas = " + nLecturas + ", offset = " + offset + ", " + "primer indice = " + primerIndice);
@@ -176,6 +181,12 @@ public class SensorConHistorial extends SensorAjustable implements IRegistrable 
 	}
 	
 	@Override
+	public int getCapacidad() {
+		// TODO Auto-generated method stub
+		return capacidad;
+	}
+	
+	@Override
 	public String toString() {
 		return super.toString() + ", capacidad = " + this.capacidad; 
 	}
@@ -212,12 +223,5 @@ public class SensorConHistorial extends SensorAjustable implements IRegistrable 
 		
 		
 	}
-
-	@Override
-	public int getCapacidad() {
-		// TODO Auto-generated method stub
-		return capacidad;
-	}
-	
 
 }

@@ -4,12 +4,15 @@ import java.util.Scanner;
 import tipos.ICalibrable;
 import tipos.IRegulable;
 import tipos.ISensorSimple;
+import tipos.LecturaSensor;
 import tipos.IRegistrable;
 import tipos.SensorAjustable;
 import tipos.SensorConHistorial;
 import tipos.SensorSimple;
 
+// ..........................................................................
 import simulador.Ciudad0;
+// ..........................................................................
 
 public class SmartCityAppV8 {
 
@@ -17,7 +20,9 @@ public class SmartCityAppV8 {
     private static ISensorSimple [] sensores = new ISensorSimple[2];
     private static int totalSensores = 0;
     
+    // .........................................................
     private static Ciudad0 ciudad0;
+    //..........................................................
 
     public static ISensorSimple buscarSensorPorId(int id) {
 
@@ -67,85 +72,89 @@ public class SmartCityAppV8 {
     // MENÚ
     public static void mostrarMenu() {
         System.out.println("\n📡 --- SMART CITY --- 📡");
-        System.out.println("1. Registrar sensor (hasta 16 sensores)");
-        System.out.println("2. Mostrar valor del sensor");
-        System.out.println("3. Verificar estado");
-        System.out.println("4. Calibrar sensor (solo ambiental)");
-        System.out.println("5. Configurar límite velocidad (solo tráfico)");
-        System.out.println("6. Comprobar si requiere intervención (solo ruido)");
-        System.out.println("7. Mostrar historial de un sensor");
+        System.out.println("1. Registrar sensor");
+        System.out.println("2. Eliminar sensor");
+        System.out.println("3. Mostrar valor del sensor");
+        System.out.println("4. Verificar estado");
+        System.out.println("5. Calibrar sensor (solo calibrable)");
+        System.out.println("6. Configurar límites de escala (solo regulable)");
+        System.out.println("7. Mostrar historial de un sensor (solo registrable)");
         System.out.println("8. Listar sensores");
-        System.out.println("9. Eliminar sensor");
         System.out.println("0. Salir");
     }
 
     // REGISTRAR SENSOR (GENÉRICO)
     public static void registrarSensor() {
-      int posicionLibre=-1;
-      for (int i=0; i<sensores.length;i++) {
-    	   if (sensores[i] == null) {
-    		 posicionLibre = i;
-    	     i=sensores.length; // en lugar de hacer un break;
-    	   }
-      }
-      if (posicionLibre == -1) {
-    		System.out.println("No queda espacio para más sensores. Elimine uno");
-      }
-      else {
-          System.out.println("\n¿Qué parámtro mide:  ?");
-          String[] parametros = {"CO2", "temperatura", "humedad", "ruido"};
-          System.out.print("Tipo (texto): ");
-          String nombreTipo = entrada.nextLine();
-          
-          boolean calibrable = false, regulable = false, historial = false;
-          
-          System.out.println("\n¿Es calibrabler:  ?(s/n)");
-          char respuesta = entrada.nextLine().charAt(0);
-          calibrable = (respuesta == 's' || respuesta == 'S')? true : false;
-          
-          System.out.println("\n¿Es regulable (fondos de escala):  ?(s/n)");
-          respuesta = entrada.nextLine().charAt(0);
-          regulable = (respuesta == 's' || respuesta == 'S')? true : false;
+    	
+        int posicionLibre=-1;
+        
+        for (int i=0; i<sensores.length;i++) {
+      	   if (sensores[i] == null) {
+      		 posicionLibre = i;
+      	     i=sensores.length; // en lugar de hacer un break;
+      	   }
+        }
+        
+        if (posicionLibre == -1) {
+      		System.out.println("No queda espacio para más sensores. Elimine uno");
+        }
+        else {
+            System.out.println("\n¿Qué parámetro mide:  ?");
+            System.out.print("\"CO2\", \"temperatura\", \"humedad\", \"ruido\"");
+            String nombreTipo = entrada.nextLine();
+            
+            boolean calibrable = false, regulable = false, historial = false;
+            
+            System.out.println("\n¿Es calibrable:  ?(s/n");
+            char respuesta = entrada.nextLine().charAt(0);
+            calibrable = (respuesta == 's' || respuesta == 'S')? true : false;
+            
+            System.out.println("\n¿Es regulable (fondos de escala):  ?(s/n");
+            respuesta = entrada.nextLine().charAt(0);
+            regulable = (respuesta == 's' || respuesta == 'S')? true : false;
 
-          System.out.println("\n¿Almacena historial de medidas:  ?(s/n)");
-          respuesta = entrada.nextLine().charAt(0);
-          historial = (respuesta == 's' || respuesta == 'S')? true : false;
-          
-          if (calibrable && regulable && historial) {
-        	  sensores[posicionLibre] = new SensorConHistorial(nombreTipo);
-          }
-          else if(calibrable && regulable) {
-        	  sensores[posicionLibre] = new SensorAjustable(nombreTipo);        	  
-          }
-          else {
-			  sensores[posicionLibre] = new SensorSimple(nombreTipo);
-		  }
+            System.out.println("\n¿Almacena historial de medidas:  ?(s/n");
+            respuesta = entrada.nextLine().charAt(0);
+            historial = (respuesta == 's' || respuesta == 'S')? true : false;
+            
+            if (calibrable && regulable && historial) {
+          	  sensores[posicionLibre] = new SensorConHistorial(nombreTipo);
+            }
+            else if(calibrable && regulable) {
+          	  sensores[posicionLibre] = new SensorAjustable(nombreTipo);        	  
+            }
+            else {
+  			  sensores[posicionLibre] = new SensorSimple(nombreTipo);
+  		  }
 
-          System.out.print("Coordenada X: ");
-          int x = entrada.nextInt();
+            System.out.print("Coordenada X: ");
+            int x = entrada.nextInt();
 
-          System.out.print("Coordenada Y: ");
-          int y = entrada.nextInt();
+            System.out.print("Coordenada Y: ");
+            int y = entrada.nextInt();
+            
+            sensores[posicionLibre].setCoordenadaX(x);
+            sensores[posicionLibre].setCoordenadaY(y);
+            
+            entrada.nextLine();
+            totalSensores++;
+            
+            System.out.println("Nuevo sensor ----> " + sensores[posicionLibre]);
           
-          System.out.println("[" + x + ", " + y + "]");
-          
-          sensores[posicionLibre].setCoordenadaX(x);
-          sensores[posicionLibre].setCoordenadaY(y);
-          
-          entrada.nextLine();
-          totalSensores++;
-          
-          System.out.println("Nuevo sensor ----> " + sensores[posicionLibre]);
-          
+          //.......................................................................................
           // Si la ciudad no es null, se registra el sensor en el simulador
           // y se fija la ciudad del sensor a Ciudad0 para que pueda interactuar 
           // con el entorno simulado.
           if (ciudad0 != null) {
+        	  // sensor conoce a ciudad.
         	  ((SensorSimple)  sensores[posicionLibre]).setCiudad(ciudad0);
+        	  
+        	  // ciudad conoce a sensor.
 			  ciudad0.agregarSensor(sensores[posicionLibre].getCoordenadaX(), 
 					                sensores[posicionLibre].getCoordenadaY(), 
 					                sensores[posicionLibre]);	  
           }
+          //.......................................................................................
        }
     }
 
@@ -163,14 +172,24 @@ public class SmartCityAppV8 {
             System.out.println("⚠️ Sensor no registrado");
             return;
         }
-		 
-		 for (int i=0; i<sensores.length; i++) {
-			 if (sensores[i]==sensor) {
-				 sensores[i]=null;
-			 }
-		 }
-		 totalSensores-=1;
+
+    	for (int i=0; i<sensores.length; i++) {
+    		if (sensores[i]==sensor) {
+    			
+    			// Si la ciudad no es null, se elimina el sensor en el simulador.
+    	    	if (ciudad0 != null) {
+    	    		ciudad0.quitarSensor(sensores[i].getCoordenadaX(), sensores[i].getCoordenadaY(), sensores[i]);  
+    	    	}    			
+    			
+    			// Eliminar sensor.
+    			sensores[i]=null;
+    		}
+    	}
+    	totalSensores-=1;
 	 }
+    
+    
+    
     // MOSTRAR VALOR (POLIMORFISMO)
     public static void mostrarValor() {
 
@@ -227,7 +246,7 @@ public class SmartCityAppV8 {
 			System.out.println("Fondeos de escal = [" + ((SensorAjustable) sensor).getValorMinimo() + ", " + ((SensorAjustable) sensor).getValorMaximo() + "]"); 
 			
 		}
-        else if (sensor instanceof SensorConHistorial) {
+        if (sensor instanceof SensorConHistorial) {
             System.out.println(((SensorConHistorial) sensor).getCapacidad()); 
         }
     }
@@ -265,7 +284,7 @@ public class SmartCityAppV8 {
     	}
     }
     
-    // CONFIGURAR TRÁFICO
+    // CONFIGURAR LÍMITES DE ESCALA (FONDOS DE ESCALA AJUSTABLES)
     public static void configurarLimite() {
 
     	if (totalSensores == 0) {
@@ -287,52 +306,19 @@ public class SmartCityAppV8 {
         	IRegulable s = (IRegulable) sensor;
 
             System.out.print("Nuevo límite máximo: ");
-            int limite = entrada.nextInt();
+            int limiteMax = entrada.nextInt();
 
-            s.setValorMinMax(s.getValorMinimo(), limite);    
-            System.out.println("✅ Límite actualizado a " + s.getValorMaximo());
+            System.out.print("Nuevo límite mínimo: ");
+            int limiteMin = entrada.nextInt();
+            
+            s.setValorMinMax(limiteMin, limiteMax);    
+            System.out.println("✅ Límites actualizados a " + s.getValorMinimo() + "," + s.getValorMaximo());
 
         } else {
             System.out.println("❌ Este sensor no es regulable (fondos de escala fijos");
         }
     }
 
-    /*
-    // COMPROBAR INTERVENCIÓN 
-    public static void comprobarIntervencion() {
-
-    	if (totalSensores == 0) {
-    	    System.out.println("❌ No hay sensores registrados");
-    	    return;
-    	}
-    	
-    	System.out.print("Introduce ID del sensor: ");
-    	int id = entrada.nextInt();
-
-    	Sensor sensor = buscarSensorPorId(id);
-        if (sensor == null) {
-            System.out.println("⚠️ Sensor no registrado");
-            return;
-        }
-
-        if (sensor instanceof SensorRuido) {
-
-            SensorRuido s = (SensorRuido) sensor;
-            boolean atencion = s.requiereAtencion();
-               if (atencion) {
-                  System.out.println("✅ El sensor requiere intervención");
-               }
-               else {
-            	  System.out.println("✅ El sensor no requiere intervención");
-               }
-
-        } else {
-            System.out.println("❌ Este sensor no es de ruido");
-        }
-    }
-    */
-    
-    
     public static void mostrarHistorico() {
 
     	if (totalSensores == 0) {
@@ -355,17 +341,22 @@ public class SmartCityAppV8 {
     	
     	IRegistrable s = (SensorConHistorial) sensor;
     	
-    	/*
-    	sensor.historial.mostrarHistorial(); 
+    	System.out.print("Introduce tamaño del historial: ");
+    	int tamaño = entrada.nextInt();
+    	LecturaSensor [] lecturas = s.getLecturas(tamaño); //mostrarHistorial(); 
+    	for (int i=0; i<lecturas.length; i++) {
+    	  if (lecturas[i]!=null)	
+    		System.out.print(lecturas[i]);
+    	}
+    	
     	System.out.printf(" Valor máximo: %.2f%n",
-                sensor.historial.obtenerMaximo());
+                s.getMaximo(tamaño));
 
         System.out.printf(" Valor mínimo: %.2f%n",
-                sensor.historial.obtenerMinimo());
+                s.getMinimo(tamaño));
 
         System.out.printf(" Media: %.2f%n",
-                sensor.historial.calcularMedia());
-                */
+                s.getMedia(tamaño));
     }
     
     public static void listarSensores() {
@@ -383,7 +374,9 @@ public class SmartCityAppV8 {
     
     
     public static void main(String[] args) {
+    	
     	ciudad0 = Ciudad0.getCiudad();
+    	
         darBienvenida();
         int opcion;
 
@@ -399,35 +392,31 @@ public class SmartCityAppV8 {
                     break;
 
                 case 2:
+                    eliminarSensor();
+                    break;
+                
+                case 3:
                     mostrarValor();
                     break;
 
-                case 3:
-                    verificarEstado();
-                    break;
-
                 case 4:
-                    calibrarSensor();
+                    verificarEstado();
                     break;
                     
                 case 5:
-                    configurarLimite();
+                    calibrarSensor();
                     break;
 
                 case 6:
-                    //comprobarIntervencion();
-                	System.out.println("No implementado en esta versión");
+                    configurarLimite();
                     break;  
-                
+            
                 case 7:
                 	mostrarHistorico();
                 	break;
                 case 8:
                 	listarSensores();
                 	break;
-                case 9:
-                	 eliminarSensor();
-                	 break;
                 case 0:
                     System.out.println("👋 Saliendo del programa...");
                     break;

@@ -21,19 +21,35 @@ public interface IUbicable {
      * @return identificador
      */
 	int getIdentificador();
-
+	
 	/**
-	 * Devuelve una descripción del objeto ubicable. 
-	 * @return
+	 * devuelve la coordenada x (columna de la cuadricula)
+	 * @return coordenadaX
 	 */
-	//String getDescripcion();
+	int getCoordenadaX(); 
 	
-	int getCoordenadaX();  // columna
-	int getCoordenadaY();  // fila	
+	/** 
+	 * devuelve la coordenada y (fila de la cuadricula)
+	 * @return coordenadaY
+	 */
+	int getCoordenadaY();  
 	
+	/**
+	 * permite actualizar la coordenada X
+	 * @param cooordenadaX
+	 */
 	void setCoordenadaX(int col);
+	
+	/**
+	 * permite actualizar la coordenada Y
+	 * @param coordenadaY
+	 */
 	void setCoordenadaY(int fila);
 	
-	
+	/**
+	 * permite establecer nueva ubicación
+	 * @param coordenadaX
+	 * @param coordenadaY
+	 */	
 	public void setUbicacion(int coordenadaX, int coordenadaY);
 }
